@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Final Scanner App</string>
+    <string name="footer_activity_main">Alex Fotoniu © 2021</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+    <string name="forgot_pass_button">Forgot your password?</string>
 </resources>

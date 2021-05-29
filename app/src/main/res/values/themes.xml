@@ -19,5 +19,8 @@
         <item name="android:statusBarColor">@color/secondary_color</item>
     </style>
 
+    <style name="ProgressBarColor" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/accents_color</item>
+    </style>
 
 </resources>
