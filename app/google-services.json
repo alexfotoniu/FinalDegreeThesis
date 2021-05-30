@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740483378028",
+    "project_id": "degreethesis-2edf3",
+    "storage_bucket": "degreethesis-2edf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740483378028:android:76a5abca3b1f0eabfde149",
+        "android_client_info": {
+          "package_name": "com.example.finalscannerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740483378028-f5499joktf6d31hfbo5k8gml4r0mrqmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnO4uExQugsA-s8CX9HyabIQ4bBYyIKYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740483378028-f5499joktf6d31hfbo5k8gml4r0mrqmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
