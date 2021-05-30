@@ -2,7 +2,7 @@ package com.example.finalscannerapp;
 
 public class User {
 
-    private String fullName, age, email;
+    public String fullName, age, email;
 
     public User() {
 
