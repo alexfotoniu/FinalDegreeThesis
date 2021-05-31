@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextPassword;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private Button forgotPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +48,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
 
+        forgotPassword = (Button)findViewById(R.id.forgot_pass_button);
+        forgotPassword.setOnClickListener(this);
+
     }
 
     @Override
@@ -57,6 +61,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.login_button:
                 userLogin();
+                break;
+            case R.id.forgot_pass_button:
+                startActivity(new Intent(this, ResetPasswordActivity.class));
                 break;
         }
     }
