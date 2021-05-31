@@ -2,15 +2,30 @@ package com.example.finalscannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button register;
+    private Button login;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,6 +35,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         register = (Button)findViewById(R.id.register_button);
         register.setOnClickListener(this);
+
+        editTextEmail = (EditText)findViewById(R.id.email_box);
+        editTextPassword = (EditText)findViewById(R.id.pass_box);
+
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+
+        login = (Button)findViewById(R.id.login_button);
+        login.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
@@ -28,8 +54,79 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.register_button:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
+            case R.id.login_button:
+                userLogin();
+                break;
         }
     }
 
+    private void userLogin() {
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        //Validations
+
+        if (email.isEmpty()) {
+            editTextEmail.setError("Please provide an email");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please provide a valid email");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is needed");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            editTextPassword.setError("Password length need to be at least 6 characters");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                } else {
+                    Toast.makeText(LoginActivity.this, "Failed to login, please check your credentials!", Toast.LENGTH_LONG).show();
+//                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
