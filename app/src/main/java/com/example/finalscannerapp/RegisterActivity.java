@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase mRootNode;
     private DatabaseReference mDatabase;
 
     @Override
@@ -52,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
         mAuth = FirebaseAuth.getInstance();
+        mRootNode = FirebaseDatabase.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
     }
