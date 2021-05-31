@@ -9,13 +9,85 @@
     tools:context=".ProfileActivity">
 
     <TextView
+        android:id="@+id/greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
-        android:text="Welcome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/email_adress_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:text="@string/email_adress_title"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/greeting"
+        app:layout_constraintLeft_toLeftOf="@id/greeting" />
+
+    <TextView
+        android:id="@+id/email_adress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintTop_toBottomOf="@id/email_adress_title"
+        app:layout_constraintLeft_toLeftOf="@id/email_adress_title" />
+
+    <TextView
+        android:id="@+id/full_name_tile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="@string/full_name_title"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/email_adress"
+        app:layout_constraintLeft_toLeftOf="@id/email_adress_title" />
+
+    <TextView
+        android:id="@+id/full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintTop_toBottomOf="@id/full_name_tile"
+        app:layout_constraintLeft_toLeftOf="@id/full_name_tile" />
+
+    <TextView
+        android:id="@+id/age_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="@string/age_title"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/full_name"
+        app:layout_constraintLeft_toLeftOf="@id/full_name_tile" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintTop_toBottomOf="@id/age_title"
+        app:layout_constraintLeft_toLeftOf="@id/age_title" />
 
     <Button
         android:id="@+id/logout_button"

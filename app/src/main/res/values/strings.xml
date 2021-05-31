@@ -9,4 +9,7 @@
     <string name="home_menu_button">Home</string>
     <string name="camera_menu_button">Camera</string>
     <string name="profile_menu_button">Profile</string>
+    <string name="email_adress_title">EMAIL:</string>
+    <string name="full_name_title">FULL NAME:</string>
+    <string name="age_title">AGE:</string>
 </resources>
