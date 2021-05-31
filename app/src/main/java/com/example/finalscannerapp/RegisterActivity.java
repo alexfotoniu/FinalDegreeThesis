@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
     }
 
@@ -114,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         User user = new User(fullName, age, email);
+//                        System.out.println("User created");
 
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -121,15 +124,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     if (task1.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, "User has been registered", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
+//                                        System.out.println("Data inserted");
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "Registering failed", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
+//                                        System.out.println("Fail");
                                     }
                                 });
+
+//                        mDatabase.child("users").push().child(mAuth.getCurrentUser().getUid()).setValue(user);
+//                        System.out.println("Success");
 
                     } else {
                         Toast.makeText(RegisterActivity.this, "Registering failed", Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
+//                        System.out.println("Fail 2");
                     }
                 });
 
