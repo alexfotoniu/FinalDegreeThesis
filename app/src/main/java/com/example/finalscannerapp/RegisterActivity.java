@@ -2,6 +2,7 @@ package com.example.finalscannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,23 +16,39 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "Register Activity";
     private EditText editTextFullName, editTextEmail, editTextPassword, editTextAge;
     private Button register;
+    private Button test;
     private ImageView logo;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mRootNode;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+//    mDatabase = FirebaseDatabase.getInstance().getReference();
+
+//    private DatabaseReference mDatabasee;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,11 +67,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         register = (Button)findViewById(R.id.register_button);
         register.setOnClickListener(this);
 
+        test = (Button)findViewById(R.id.test_button);
+
+
+
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
         mAuth = FirebaseAuth.getInstance();
-        mRootNode = FirebaseDatabase.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+
+
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mDatabase.push().setValue("Hello");
+//            }
+//        });
+
+//        mDatabasee = FirebaseDatabase.getInstance().getReference();
+//        mDatabasee.child("messages").setValue("Hello, World");
 
     }
 
@@ -113,6 +145,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+
+
+
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
@@ -120,27 +155,45 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         User user = new User(fullName, age, email);
 //                        System.out.println("User created");
 
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user).addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
+                        FirebaseUser mDbData = mAuth.getCurrentUser();
+                        DatabaseReference mUser = mDatabase.child("users");
+
+                                mUser.child(Objects.requireNonNull(mDbData).getUid())
+                                .setValue("aaa")
+//                                        .addOnCompleteListener(task1 -> {
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
                                         Toast.makeText(RegisterActivity.this, "User has been registered", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
-//                                        System.out.println("Data inserted");
-                                    } else {
+                                        System.out.println("Data inserted");
+                                        Log.d(TAG,"Data inserted");
+
+                                }}).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull @NotNull Exception e) {
                                         Toast.makeText(RegisterActivity.this, "Registering failed", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
-//                                        System.out.println("Fail");
+                                        System.out.println("Fail");
+                                        Log.d(TAG,"Failed to insert data");
                                     }
                                 });
 
+
+
+
+//                        });
+
 //                        mDatabase.child("users").push().child(mAuth.getCurrentUser().getUid()).setValue(user);
-//                        System.out.println("Success");
+//                        progressBar.setVisibility(View.GONE);
+                        System.out.println("Success");
+                        Log.d(TAG,"Data inserted successfully");
 
                     } else {
                         Toast.makeText(RegisterActivity.this, "Registering failed", Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
-//                        System.out.println("Fail 2");
+                        System.out.println("Fail 2");
+                        Log.d(TAG,"Data inserted failed");
                     }
                 });
 
