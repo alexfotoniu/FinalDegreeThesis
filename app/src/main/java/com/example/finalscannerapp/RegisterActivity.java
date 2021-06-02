@@ -41,7 +41,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mRootNode;
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mDatabase = FirebaseDatabase
+            .getInstance()
+            .getReference();
 
 
 //    mDatabase = FirebaseDatabase.getInstance().getReference();
