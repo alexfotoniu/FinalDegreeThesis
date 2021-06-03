@@ -46,4 +46,4 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
