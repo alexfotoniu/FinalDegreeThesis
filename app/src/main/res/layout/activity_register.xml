@@ -78,18 +78,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pass_box" />
 
-    <Button
-        android:id="@+id/test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/third_color"
-        android:fontFamily="@font/montserrat"
-        android:text="test"
-        android:textColor="@color/primary_color"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_button" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
