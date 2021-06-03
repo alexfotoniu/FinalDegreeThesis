@@ -23,4 +23,8 @@
         <item name="colorAccent">@color/accents_color</item>
     </style>
 
+    <style name="ActionBarTheme" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/primary_color</item>
+    </style>
+
 </resources>
