@@ -30,6 +30,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+import static java.lang.Thread.sleep;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextFullName, editTextEmail, editTextPassword, editTextAge;
@@ -130,7 +132,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_LONG).show();
+                                        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+                                        Toast.makeText(RegisterActivity.this, "You are registered. Check your email", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 }}).addOnFailureListener(new OnFailureListener() {
