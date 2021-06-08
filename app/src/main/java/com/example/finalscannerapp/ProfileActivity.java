@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
