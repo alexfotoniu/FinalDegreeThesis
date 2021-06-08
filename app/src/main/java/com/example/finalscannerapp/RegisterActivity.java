@@ -36,12 +36,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText editTextFullName, editTextEmail, editTextPassword, editTextAge;
     private Button register;
-    private Button test;
     private ImageView logo;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
 //    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
