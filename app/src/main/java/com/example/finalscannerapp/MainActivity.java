@@ -7,8 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,9 +22,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.zip.Inflater;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton floatingActionButton;
+    private String TAG = "Main activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
-        floatingActionButton.setOnClickListener(this);
+        floatingActionButton.bringToFront();
+        if (floatingActionButton != null) {
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    if (checkSelfPermission())
+                    startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+                }
+            });
 
+        }
     }
 
     @Override
@@ -55,20 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-//                try {
-//                    checkPermission();
-//                    startActivity(new Intent(MainActivity.this, Class.forName(MediaStore.ACTION_IMAGE_CAPTURE)));
-//                } catch (ClassNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-                Toast.makeText(MainActivity.this, "Click!", Toast.LENGTH_LONG).show();
-                break;
-        }
-    }
 
 
 //    public void checkPermission() {
