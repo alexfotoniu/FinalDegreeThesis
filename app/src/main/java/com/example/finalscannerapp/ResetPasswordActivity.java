@@ -1,5 +1,6 @@
 package com.example.finalscannerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -70,6 +71,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(ResetPasswordActivity.this, "Check your email to reset password!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
+                    startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
                 } else {
                     Toast.makeText(ResetPasswordActivity.this, "Try again, something went wrong", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
